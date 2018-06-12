@@ -1,15 +1,14 @@
-var MarsRover = function (plateau_x, plateau_y, position_x, position_y, direction, control_sequence) {
+var MarsRover = function (plateau_x, plateau_y, position_x, position_y, direction) {
   this.plateau_x = plateau_x;
   this.plateau_y = plateau_y;
   this.position_x = position_x;
   this.position_y = position_y;
   this.direction = direction;
-  this.control_sequence = control_sequence;
   this.directions = ['N', 'E', 'S', 'W']
 }
 
-MarsRover.prototype.move = function() {
-  for(control_char of this.control_sequence) {
+MarsRover.prototype.move = function(control_sequence) {
+  for(control_char of control_sequence) {
     console.log(control_char)
     if(control_char === 'M') {
       try {
