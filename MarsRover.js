@@ -11,23 +11,28 @@ function MarsRover(plateau_x, plateau_y, position_x, position_y, direction, cont
   function move() {
     for(control_char of this.control_sequence) {
       if(control_char === 'M') {
+        try {
         switch(this.direction) {
           case 'N' :
-            this.plateau_y++;
+          this.plateau_y++;
           case 'S' :
-            this.plateau_y--;
+          this.plateau_y--;
           case 'E' :
-            this.plateau_x++;
+          this.plateau_x++;
           case 'W' :
-            this.plateau_x--;
+          this.plateau_x--;
         }
+        checkPlateauBoundary(this.plateau_x, this.plateau_y)
       }
-      else {
-        this.direction = computeNewDirection(control_char);
-      }
-
+      catch(e) {
+        alert(e.message());
+      };
+    }
+    else {
+      this.direction = computeNewDirection(control_char);
     }
   }
+}
 
   function computeNewDirection(moveDirection) {
     indexOfCurrentDirection = directions.findIndex(moveDirection);
@@ -50,7 +55,9 @@ function MarsRover(plateau_x, plateau_y, position_x, position_y, direction, cont
   }
 
   function checkPlateauBoundary(x, y) {
-    return console.error();
+    throw "Cannot move further";
   }
 
 }
+
+MarsRover(5, 5, 1, 2, 'N', 'LMLMLMLMM');
