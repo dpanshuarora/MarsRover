@@ -49,4 +49,17 @@ var MarsRover = require('./MarsRover');
       expect(marsRover.returnPosition()).toEqual("2 2 W");
     });
 
+    it('can return position correctly', function () {
+      var marsRover = new MarsRover(5,5,3,2,'W');
+      expect(marsRover.returnPosition()).toEqual("3 2 W");
+    });
+
+    it('throws error if mars rover moves out of given plateau boundaries', function () {
+      var marsRover = new MarsRover(5,5,5,5,'E');
+      expect(function () { marsRover.move("M"); }).toThrow(
+        new Error("Cannot move further"));
+    });
+
+
+
   });
