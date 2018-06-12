@@ -67,3 +67,4 @@ MarsRover.prototype.checkPlateauBoundary = function(x, y) {
     throw new Error("Cannot move further");
   }
 }
+module.exports = MarsRover;
