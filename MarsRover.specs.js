@@ -1,27 +1,15 @@
 var MarsRover = require('./MarsRover');
   describe('Check MarsRover Moves correctly.', function () {
 
-    it('can move according to control sequence LMLMLMLMM', function () {
-      var marsRover = new MarsRover(5,5,1,2,'N');
-      marsRover.move("LMLMLMLMM");
-      expect(marsRover.returnPosition()).toEqual("1 3 N");
-    });
-
-    it('can move according to control sequence MMRMMRMRRM', function () {
-      var marsRover = new MarsRover(5,5,3,3,'E');
-      marsRover.move("MMRMMRMRRM");
-      expect(marsRover.returnPosition()).toEqual("5 1 E");
-    });
-
     it('can move left', function () {
       var marsRover = new MarsRover(5,5,1,2,'S');
-      marsRover.computeNewDirection("L");
+      marsRover.move("L");
       expect(marsRover.returnPosition()).toEqual("1 2 E");
     });
 
     it('can move right', function () {
       var marsRover = new MarsRover(5,6,1,2,'S');
-      marsRover.computeNewDirection("R");
+      marsRover.move("R");
       expect(marsRover.returnPosition()).toEqual("1 2 W");
     });
 
@@ -56,10 +44,21 @@ var MarsRover = require('./MarsRover');
 
     it('throws error if mars rover moves out of given plateau boundaries', function () {
       var marsRover = new MarsRover(5,5,5,5,'E');
-      expect(function () { marsRover.move("M"); }).toThrow(
+      marsRover.move("M")
+      expect(function () { marsRover.checkPlateauBoundary(); }).toThrow(
         new Error("Cannot move further"));
     });
 
+    it('can move according to control sequence LMLMLMLMM', function () {
+      var marsRover = new MarsRover(5,5,1,2,'N');
+      marsRover.move("LMLMLMLMM");
+      expect(marsRover.returnPosition()).toEqual("1 3 N");
+    });
 
+    it('can move according to control sequence MMRMMRMRRM', function () {
+      var marsRover = new MarsRover(5,5,3,3,'E');
+      marsRover.move("MMRMMRMRRM");
+      expect(marsRover.returnPosition()).toEqual("5 1 E");
+    });
 
   });
